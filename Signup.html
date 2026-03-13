@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Tsabong Red Lions SC</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+    <header class="header" id="header">
+        <div class="container">
+            <a href="#" class="logo-link">
+                <img src="images/Logo.png" alt="">
+                <span>Tsabong</span> Red Lions SC
+            </a>
+            <nav class="navigation" id="navigation">
+                <a href="index.html">Home</a>
+                <a href="fans.html">Fans</a>
+                <a href="tickets.html">Tickets</a>
+                <a href="shop.html">Shop</a>
+                <a href="community.html">Community</a>
+                 <a href="Signup.html">Sign up</a>
+                <span class="icon" id="close"><i class="fa-solid fa-xmark"></i></span>
+            </nav>
+            <div class="controls">
+                <button class="btn-signup">Sign up</button>
+                <span class="icon" id="menu"><i class="fa-solid fa-bars"></i></span>
+            </div>
+        </div>
+    </header>
+
+    <section class="signup-hero">
+        <div class="container">
+            <h1 class="hero-title">JOIN THE PRIDE</h1>
+            <p class="hero-subtitle">Become an official member today 🦁</p>
+        </div>
+    </section>
+
+    <section class="signup-form">
+        <div class="container">
+            <form id="signupForm">
+                <input type="text" placeholder="Full Name" required>
+                <input type="email" placeholder="Email" required>
+                <input type="tel" placeholder="Phone Number">
+                <select required>
+                    <option value="">Choose Membership</option>
+                    <option>Junior Lion (P 100/year)</option>
+                    <option>Adult Lion (P 250/year)</option>
+                    <option>Super Lion VIP (P 500/year)</option>
+                </select>
+                <button type="submit" class="btn-join">Create Account</button>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        const btn_menu = document.getElementById('menu')
+        const btn_close = document.getElementById('close')
+        const navigation = document.getElementById('navigation')
+        btn_menu.addEventListener('click', () => navigation.classList.add('active'))
+        btn_close.addEventListener('click', () => navigation.classList.remove('active'))
+
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault()
+            alert("🎉 Welcome to the Pride! Your membership is now active. Check your email for the digital card.")
+        })
+    </script>
+</body>
+</html>

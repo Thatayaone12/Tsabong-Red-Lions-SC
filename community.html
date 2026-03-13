@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community - Tsabong Red Lions Sporting Club</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <!-- SAME HEADER AS ALL OTHER PAGES -->
+    <header class="header" id="header">
+        <div class="container">
+            <a href="#" class="logo-link">
+                <img src="images/Logo.png" alt="">
+                <span>Tsabong</span> Red Lions SC
+            </a>
+            
+            <nav class="navigation" id="navigation">
+                <a href="index.html">Home</a>
+                <a href="fans.html">Fans</a>
+                <a href="tickets.html">Tickets</a>
+                <a href="shop.html">Shop</a>
+                <a href="community.html" class="active">Community</a>
+                 <a href="Signup.html">Sign up</a>
+                <span class="icon" id="close"><i class="fa-solid fa-xmark"></i></span>
+            </nav>
+
+            <div class="controls">
+                <button class="btn-signup">Sign up</button>
+                <span class="icon" id="menu"><i class="fa-solid fa-bars"></i></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- COMMUNITY HERO -->
+    <section class="community-hero">
+        <div class="container">
+            <h1 class="hero-title">THE JUNGLE COMMUNITY</h1>
+            <p class="hero-subtitle">Together we roar • Building Tsabong stronger 🦁</p>
+        </div>
+    </section>
+
+    <!-- INITIATIVES -->
+    <section class="initiatives">
+        <div class="container">
+            <h2 class="section-title">Our Community Initiatives</h2>
+            <div class="initiatives-grid">
+                <div class="init-card">
+                    <i class="fa-solid fa-child"></i>
+                    <h3>Youth Academy</h3>
+                    <p>Free football training for kids in Tsabong & Kgalagadi</p>
+                </div>
+                <div class="init-card">
+                    <i class="fa-solid fa-hand-holding-heart"></i>
+                    <h3>Charity Matches</h3>
+                    <p>Raising funds for local schools and hospitals</p>
+                </div>
+                <div class="init-card">
+                    <i class="fa-solid fa-school"></i>
+                    <h3>School Programs</h3>
+                    <p>Football workshops in Tsabong schools</p>
+                </div>
+                <div class="init-card">
+                    <i class="fa-solid fa-users"></i>
+                    <h3>Fan Clubs</h3>
+                    <p>Official supporter groups across Botswana</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- UPCOMING EVENTS -->
+    <section class="community-events">
+        <div class="container">
+            <h2 class="section-title">Upcoming Community Events</h2>
+            <div class="events-grid">
+                <div class="event-card">
+                    <div class="date">15 MAR 2026</div>
+                    <h3>Youth Day Training Camp</h3>
+                    <p>Tsabong Stadium • Free for all kids under 16</p>
+                    <button onclick="joinEvent(this)" class="btn-join">Join Now</button>
+                </div>
+                <div class="event-card">
+                    <div class="date">05 APR 2026</div>
+                    <h3>Community Charity Match</h3>
+                    <p>Vs Tsabong Kick • Proceeds to local hospital</p>
+                    <button onclick="joinEvent(this)" class="btn-join">Get Involved</button>
+                </div>
+                <div class="event-card">
+                    <div class="date">20 APR 2026</div>
+                    <h3>Fan Meet & Greet</h3>
+                    <p>With players after training • Tsabong Stadium</p>
+                    <button onclick="joinEvent(this)" class="btn-join">Register</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JOIN THE COMMUNITY FORM -->
+    <section class="join-community">
+        <div class="container">
+            <h2 class="section-title">Join the Jungle Family</h2>
+            <form id="communityForm" class="community-form">
+                <input type="text" placeholder="Full Name" required>
+                <input type="email" placeholder="Email" required>
+                <input type="tel" placeholder="Phone">
+                <select required>
+                    <option value="">How do you want to get involved?</option>
+                    <option>Volunteer</option>
+                    <option>Youth Coach</option>
+                    <option>Fan Club Member</option>
+                    <option>Donate</option>
+                </select>
+                <button type="submit" class="btn-join">Submit</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- SUCCESS MODAL -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">×</span>
+            <i class="fa-solid fa-heart" style="color:var(--red);font-size:70px;margin-bottom:20px;"></i>
+            <h2>Welcome to the Pride!</h2>
+            <p>Thank you! Our community team will contact you soon.<br>
+            #KingsOfTheJungle 🦁</p>
+            <button onclick="closeModal()" class="btn-buy">Back to Community</button>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu
+        const btn_menu = document.getElementById('menu')
+        const btn_close = document.getElementById('close')
+        const navigation = document.getElementById('navigation')
+        btn_menu.addEventListener('click', () => navigation.classList.add('active'))
+        btn_close.addEventListener('click', () => navigation.classList.remove('active'))
+
+        // Form submit
+        document.getElementById('communityForm').addEventListener('submit', function(e) {
+            e.preventDefault()
+            document.getElementById('successModal').style.display = 'flex'
+        })
+
+        function closeModal() {
+            document.getElementById('successModal').style.display = 'none'
+        }
+
+        function joinEvent(btn) {
+            alert("✅ You're signed up! We'll send you the details via WhatsApp/SMS.")
+        }
+    </script>
+</body>
+</html>

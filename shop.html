@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - Tsabong Red Lions Sporting Club</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <!-- SAME HEADER -->
+    <header class="header" id="header">
+        <div class="container">
+            <a href="#" class="logo-link">
+                <img src="images/Logo.png" alt="">
+                <span>Tsabong</span> Red Lions SC
+            </a>
+            
+            <nav class="navigation" id="navigation">
+                <a href="index.html">Home</a>
+                <a href="fans.html">Fans</a>
+                <a href="tickets.html">Tickets</a>
+                <a href="shop.html">Shop</a>
+                <a href="community.html">Community</a>
+                 <a href="Signup.html">Sign up</a>
+                <span class="icon" id="close"><i class="fa-solid fa-xmark"></i></span>
+            </nav>
+
+            <div class="controls">
+                <button class="btn-signup">Sign up</button>
+                <span class="icon" id="menu"><i class="fa-solid fa-bars"></i></span>
+                <!-- Cart icon -->
+                <span onclick="openCartModal()" class="icon cart-icon" style="position:relative;">
+                    <i class="fa-solid fa-shopping-cart"></i>
+                    <span id="cart-count" class="cart-count">0</span>
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <!-- SHOP HERO -->
+    <section class="shop-hero">
+        <div class="container">
+            <h1 class="hero-title">THE JUNGLE STORE</h1>
+            <p class="hero-subtitle">Official Merchandise • Wear the Pride 🦁</p>
+        </div>
+    </section>
+
+    <!-- PRODUCTS GRID -->
+    <section class="shop">
+        <div class="container">
+            <h2 class="section-title">Official Merchandise</h2>
+            <div class="products-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <img src="images/Home kit.jpg" alt="Home Jersey">
+                    <h3>Home Kit 2025/26</h3>
+                    <div class="price">P 350</div>
+                    <button onclick="addToCart('Home Kit 2025/26', 350)" class="btn-buy">Add to Cart</button>
+                </div>
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <img src="images/Away kit.jpg" alt="Away Jersey">
+                    <h3>Away Kit 2025/26</h3>
+                    <div class="price">P 320</div>
+                    <button onclick="addToCart('Away Kit 2025/26', 320)" class="btn-buy">Add to Cart</button>
+                </div>
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <img src="images/alternative kit.jpg" alt="Alternative">
+                    <h3>Away Kit 2025/26</h3>
+                    <div class="price">P 320</div>
+                    <button onclick="addToCart('Away Kit 2025/26', 320)" class="btn-buy">Add to Cart</button>
+                </div>
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <img src="images/Fans replica.jpg" alt="Replica">
+                    <h3>Away Kit 2025/26</h3>
+                    <div class="price">P 320</div>
+                    <button onclick="addToCart('Away Kit 2025/26', 320)" class="btn-buy">Add to Cart</button>
+                </div>
+                <!-- Product 5 -->
+                <div class="product-card">
+                    <img src="images/hoodie.jpg" alt="Hoodie">
+                    <h3>Training Hoodie</h3>
+                    <div class="price">P 280</div>
+                    <button onclick="addToCart('Training Hoodie', 280)" class="btn-buy">Add to Cart</button>
+                </div>
+                <!-- Product 6 -->
+                <div class="product-card">
+                    <img src="images/cap.jpg" alt="Cap">
+                    <h3>Official Lion Cap</h3>
+                    <div class="price">P 120</div>
+                    <button onclick="addToCart('Official Lion Cap', 120)" class="btn-buy">Add to Cart</button>
+                </div>
+                <!-- Product 7 -->
+                <div class="product-card">
+                    <img src="images/scarf.jpg" alt="Scarf">
+                    <h3>Club Scarf</h3>
+                    <div class="price">P 90</div>
+                    <button onclick="addToCart('Club Scarf', 90)" class="btn-buy">Add to Cart</button>
+                </div>
+                <!-- Product 8 -->
+                <div class="product-card">
+                    <img src="images/mug.jpg" alt="Mug">
+                    <h3>Lion Mug</h3>
+                    <div class="price">P 65</div>
+                    <button onclick="addToCart('Lion Mug', 65)" class="btn-buy">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CART MODAL -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeCartModal()">×</span>
+            <h2>Your Cart <span id="modal-cart-count">(0)</span></h2>
+            <div id="cart-items"></div>
+            <div class="cart-total">Total: <strong id="cart-total">P 0</strong></div>
+            <button onclick="checkout()" class="btn-buy">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- Toast notification -->
+    <div id="toast" class="toast"></div>
+
+    <script>
+        // Mobile menu
+        const btn_menu = document.getElementById('menu')
+        const btn_close = document.getElementById('close')
+        const navigation = document.getElementById('navigation')
+        btn_menu.addEventListener('click', () => navigation.classList.add('active'))
+        btn_close.addEventListener('click', () => navigation.classList.remove('active'))
+
+        // Cart functionality
+        let cart = []
+
+        function addToCart(name, price) {
+            cart.push({ name, price })
+            updateCartCount()
+            showToast(`${name} added to cart!`)
+        }
+
+        function updateCartCount() {
+            document.getElementById('cart-count').textContent = cart.length
+        }
+
+        function openCartModal() {
+            const modal = document.getElementById('cartModal')
+            const itemsDiv = document.getElementById('cart-items')
+            itemsDiv.innerHTML = ''
+            let total = 0
+
+            cart.forEach((item, index) => {
+                total += item.price
+                itemsDiv.innerHTML += `
+                    <div class="cart-item">
+                        <span>${item.name}</span>
+                        <span>P ${item.price}</span>
+                    </div>
+                `
+            })
+
+            document.getElementById('modal-cart-count').textContent = `(${cart.length})`
+            document.getElementById('cart-total').textContent = `P ${total}`
+            modal.style.display = 'flex'
+        }
+
+        function closeCartModal() {
+            document.getElementById('cartModal').style.display = 'none'
+        }
+
+        function checkout() {
+            if (cart.length === 0) return
+            alert("🎉 Thank you! Your order has been placed. We will contact you shortly.")
+            cart = []
+            updateCartCount()
+            closeCartModal()
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast')
+            toast.textContent = message
+            toast.style.display = 'block'
+            setTimeout(() => { toast.style.display = 'none' }, 2500)
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fans - Tsabong Red Lions Sporting Club</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <!-- SAME HEADER AS HOMEPAGE & TICKETS -->
+    <header class="header" id="header">
+        <div class="container">
+            <a href="#" class="logo-link">
+                <img src="images/Logo.png" alt="">
+                <span>Tsabong</span> Red Lions SC
+            </a>
+            
+            <nav class="navigation" id="navigation">
+                <a href="index.html">Home</a>
+                <a href="fans.html">Fans</a>
+                <a href="tickets.html">Tickets</a>
+                <a href="shop.html">Shop</a>
+                <a href="community.html">Community</a>
+                <span class="icon" id="close"><i class="fa-solid fa-xmark"></i></span>
+            </nav>
+
+            <div class="controls">
+                <button class="btn-signup">Sign up</button>
+                <span class="icon" id="menu"><i class="fa-solid fa-bars"></i></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- FANS HERO -->
+    <section class="fans-hero">
+        <div class="container">
+            <h1 class="hero-title">THE JUNGLE FAMILY</h1>
+            <p class="hero-subtitle">#KingsOfTheJungle • 12,450+ Proud Supporters 🔥</p>
+        </div>
+    </section>
+
+    <!-- OUR FANS GALLERY -->
+    <section class="fans-gallery">
+        <div class="container">
+            <h2 class="section-title">Our Pride in Action</h2>
+            <div class="gallery-grid">
+                <img src="images/Fans celebrating 1.jpg" alt="Fans celebrating" onclick="openImageModal(this)">
+                <img src="images/Suppoter.jpg" alt="Supporter" onclick="openImageModal(this)">
+                <img src="images/Fan moment.jpg" alt="Fan moment" onclick="openImageModal(this)">
+                <img src="images/Team with fans.jpg" alt="Team with fans" onclick="openImageModal(this)">
+            </div>
+        </div>
+    </section>
+
+    <!-- JOIN THE PRIDE BENEFITS -->
+    <section class="join-pride">
+        <div class="container">
+            <h2 class="section-title">Why Join the Pride?</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <i class="fa-solid fa-ticket"></i>
+                    <h3>Priority Tickets</h3>
+                    <p>Early access to all home games</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fa-solid fa-shirt"></i>
+                    <h3>Exclusive Merch</h3>
+                    <p>10% discount in the club shop</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fa-solid fa-users"></i>
+                    <h3>Fan Events</h3>
+                    <p>Meet & greets, watch parties & more</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fa-solid fa-medal"></i>
+                    <h3>Official Membership Card</h3>
+                    <p>Show your support everywhere</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JOIN FORM -->
+    <section class="join-form">
+        <div class="container">
+            <h2 class="section-title">Become a Member Today</h2>
+            <form id="fanForm" class="fan-form">
+                <input type="text" placeholder="Full Name" required>
+                <input type="email" placeholder="Email Address" required>
+                <input type="tel" placeholder="Phone Number">
+                <select required>
+                    <option value="">Choose Membership</option>
+                    <option>Junior Lion (Under 18) - P 100/year</option>
+                    <option>Adult Lion - P 250/year</option>
+                    <option>Super Lion (VIP) - P 500/year</option>
+                </select>
+                <button type="submit" class="btn-join">Join the Pride 🦁</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- SUCCESS MODAL -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeSuccessModal()">×</span>
+            <i class="fa-solid fa-heart" style="font-size: 60px; color: var(--red); margin-bottom: 20px;"></i>
+            <h2>Welcome to the Jungle!</h2>
+            <p>You are now an official Tsabong Red Lions supporter!<br>
+            Check your email for your membership card.</p>
+            <button onclick="closeSuccessModal()" class="btn-buy">Back to Fans</button>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu
+        const btn_menu = document.getElementById('menu')
+        const btn_close = document.getElementById('close')
+        const navigation = document.getElementById('navigation')
+        btn_menu.addEventListener('click', () => navigation.classList.add('active'))
+        btn_close.addEventListener('click', () => navigation.classList.remove('active'))
+
+        // Image modal (same as homepage gallery)
+        function openImageModal(img) {
+            const modal = document.createElement('div')
+            modal.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);display:flex;align-items:center;justify-content:center;z-index:2000;'
+            modal.innerHTML = `
+                <span onclick="this.parentElement.remove()" style="position:absolute;top:20px;right:30px;color:#fff;font-size:50px;cursor:pointer;">×</span>
+                <img src="${img.src}" style="max-width:90%;max-height:90vh;border-radius:12px;">
+            `
+            document.body.appendChild(modal)
+        }
+
+        // Join form
+        document.getElementById('fanForm').addEventListener('submit', function(e) {
+            e.preventDefault()
+            document.getElementById('successModal').style.display = 'flex'
+        })
+
+        function closeSuccessModal() {
+            document.getElementById('successModal').style.display = 'none'
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart - Tsabong Red Lions Shop</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <header class="header" id="header">
+        <div class="container">
+            <a href="#" class="logo-link">
+                <img src="images/Logo.png" alt="">
+                <span>Tsabong</span> Red Lions SC
+            </a>
+            <nav class="navigation" id="navigation">
+                <a href="index.html">Home</a>
+                <a href="fans.html">Fans</a>
+                <a href="tickets.html">Tickets</a>
+                <a href="shop.html">Shop</a>
+                <a href="community.html">Community</a>
+                <span class="icon" id="close"><i class="fa-solid fa-xmark"></i></span>
+            </nav>
+            <div class="controls">
+                <span onclick="window.location='shop.html'" class="icon">🛍️ Shop</span>
+            </div>
+        </div>
+    </header>
+
+    <section class="cart-page">
+        <div class="container">
+            <h1 class="section-title">Your Cart</h1>
+            <div id="cart-items" class="cart-items"></div>
+            <div class="cart-summary">
+                <p>Total: <strong id="cart-total">P 0</strong></p>
+                <button onclick="checkout()" class="btn-buy">Proceed to Checkout</button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        let cart = JSON.parse(localStorage.getItem('cart')) || []
+        // (same addToCart logic as shop.html – you can copy from shop if needed)
+        // For simplicity, you can add items from shop and they will appear here
+        function renderCart() {
+            // render code – same as before
+        }
+        function checkout() {
+            if (cart.length === 0) return alert("Cart is empty")
+            alert("🎉 Order placed! Thank you for supporting the Lions.")
+            localStorage.clear()
+            window.location = "shop.html"
+        }
+    </script>
+</body>
+</html>
